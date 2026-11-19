@@ -197,7 +197,7 @@
 
   }
 
-  /* ---------- intro: plays once per visit and cannot be skipped; the page is locked until it ends ---------- */
+  /* ---------- intro: plays on every load/refresh and cannot be skipped; the page is locked until it ends ---------- */
   var intro = document.getElementById("intro");
   var root = document.documentElement;
   var lockEls = [document.querySelector(".site-header"), document.getElementById("views")];
@@ -211,7 +211,6 @@
     setLocked(false);
     root.classList.add("ready");
     if (intro && intro.parentNode) intro.parentNode.removeChild(intro);
-    try { sessionStorage.setItem("nx_intro", "1"); } catch (e) {}
   }
   if (!intro || root.classList.contains("seen") || reduceMotion) {
     introDone();
