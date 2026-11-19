@@ -250,6 +250,10 @@
     if (hdr) { hdr.classList.remove("nav-open"); if (menuBtn) menuBtn.setAttribute("aria-expanded", "false"); }
     window.scrollTo(0, 0);
   }
+  /* every fresh load or refresh starts on Home: drop any #page from the address first */
+  if (location.hash) {
+    try { history.replaceState(null, "", location.pathname + location.search); } catch (e) { location.hash = ""; }
+  }
   window.addEventListener("hashchange", route);
   route();
 
@@ -333,8 +337,9 @@
                        "antinuke": "operational", "database": "operational" } }
      Each service is "operational", "degraded" or "down". uptime is in seconds.
      Add ?demo to the status page URL to preview the layout with sample numbers. */
-  var STATUS_API = "http://176.100.37.91:30079/status";
-  var POLL_MS = 20000;
+  var STATUS_API = "https://gist.githubusercontent.com/0x63X/9da60bc0fd468e08f49343bd467ec3cd/raw/status.json";
+  var POLL_MS = 60000;
+  var STALE_SEC = 420;  /* the bot pushes about every 2 minutes; older than this means it is offline */
 
   var SVC = ["gateway", "commands", "antinuke", "database"];
   var LABEL = { ok: "Operational", warn: "Degraded", bad: "Down", unk: "Unknown" };
@@ -427,9 +432,13 @@
     }
     var ctl = window.AbortController ? new AbortController() : null;
     var to = setTimeout(function () { if (ctl) ctl.abort(); }, 6000);
-    fetch(STATUS_API, { cache: "no-store", signal: ctl ? ctl.signal : undefined })
+    fetch(STATUS_API + "?t=" + Date.now(), { cache: "no-store", signal: ctl ? ctl.signal : undefined })
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(function (d) { clearTimeout(to); lastCheck = Date.now(); paint(model("live", d)); })
+      .then(function (d) {
+        clearTimeout(to); lastCheck = Date.now();
+        var age = d && d.updated ? Date.now() / 1000 - d.updated : Infinity;
+        paint(model(age > STALE_SEC ? "fail" : "live", d));
+      })
       .catch(function () { clearTimeout(to); lastCheck = Date.now(); paint(model("fail")); });
   }
 
