@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="logo.png">
+<title>NxllSec</title>
+<meta name="description" content="NxllSec is a Discord security bot: anti-nuke, automod, logs, tickets, verification and moderation in one bot.">
+<script>try{if(sessionStorage.getItem("nx_intro"))document.documentElement.classList.add("seen")}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="floaters" id="floaters" aria-hidden="true"></div>
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro-logo">
+    <img class="intro-img" src="logo.png" alt="">
+    <svg viewBox="0 0 500 500" focusable="false"><path class="intro-line" pathLength="1" d="M250 7 L240 22 L223 36 L206 44 L200 43 L185 51 L154 64 L126 73 L121 73 L116 68 L120 64 L109 70 L103 71 L101 69 L102 68 L96 68 L90 63 L90 56 L76 69 L45 87 L33 90 L26 90 L30 97 L37 117 L41 137 L41 147 L40 150 L38 151 L34 144 L37 150 L36 154 L29 154 L19 149 L22 153 L25 163 L37 190 L44 210 L51 237 L51 243 L53 249 L53 267 L50 272 L48 273 L43 272 L56 290 L75 320 L76 323 L75 325 L70 329 L110 368 L127 386 L133 395 L131 390 L135 387 L139 387 L145 393 L152 404 L155 415 L160 411 L165 411 L191 430 L223 456 L237 470 L250 488 L259 475 L278 455 L323 421 L330 413 L334 411 L341 411 L345 415 L347 407 L356 392 L360 388 L366 387 L369 389 L367 394 L399 358 L422 335 L430 329 L425 326 L424 322 L438 298 L457 272 L451 273 L447 269 L446 255 L448 240 L458 200 L480 149 L471 154 L463 154 L461 152 L462 151 L461 152 L458 146 L459 132 L463 114 L469 97 L473 90 L462 89 L442 80 L424 69 L416 63 L410 56 L409 56 L409 63 L403 68 L398 68 L399 69 L398 71 L393 71 L383 66 L388 70 L384 75 L378 75 L358 69 L319 53 L300 43 L291 43 L282 39 L269 31 L256 18Z"/></svg>
+  </div>
+</div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#home" aria-label="NxllSec home"><img src="logo.png" alt="" width="40" height="40"></a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#home" class="nl on" aria-current="page"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></a>
+      <a href="#antinuke" class="nl"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.2 8 8 9 4.8-1 8-4.5 8-9V6z"/></svg><span>Anti-nuke</span></a>
+      <a href="#features" class="nl"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Features</span></a>
+      <a href="#commands" class="nl"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 7 5 5-5 5M12 18h8"/></svg><span>Commands</span></a>
+      <a href="#setup" class="nl"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg><span>Setup</span></a>
+      <a href="#status" class="nl" data-status data-state="unk"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg><span>Status</span><i class="dot" aria-hidden="true"></i></a>
+      <a class="btn primary small" data-invite href="https://discord.com/oauth2/authorize?client_id=1558056855236907048&permissions=8&scope=bot+applications.commands" target="_blank" rel="noopener"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Add to Discord</span></a>
+    </nav>
+    <button class="menu-btn" id="menu-btn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+
+<div id="views">
+<div class="view" id="v-home" data-title="NxllSec">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Discord security bot</p>
+      <h1>A nuker gets <em>one action.</em></h1>
+      <p class="lede">NxllSec reverts every channel, role and ban a rogue admin throws at your server, then punishes them. Automod, logs, tickets and verification come in the same bot.</p>
+      <div class="hero-cta">
+        <a class="btn primary" data-invite href="https://discord.com/oauth2/authorize?client_id=1558056855236907048&permissions=8&scope=bot+applications.commands" target="_blank" rel="noopener">Add to Discord</a>
+        <a class="btn" href="#commands">Browse commands</a>
+        <a class="btn" href="#status"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg><span>Bot status</span></a>
+      </div>
+      <p class="hero-meta">
+        <span>12 anti-nuke guards</span>
+        <span>93 commands</span>
+        <span>prefix and / commands</span>
+      </p>
+    </div>
+
+    <div class="feed" aria-labelledby="feed-title">
+      <div class="feed-bar">
+        <span class="feed-title" id="feed-title">audit-log <i>/</i> simulated run</span>
+        <span class="feed-title">timings are illustrative</span>
+      </div>
+      <div class="feed-controls">
+        <div class="ctl">
+          <span class="ctl-label" id="lbl-mode">Anti-nuke mode</span>
+          <div class="seg" role="group" aria-labelledby="lbl-mode" id="seg-mode">
+            <button type="button" data-mode="preventive" aria-pressed="true">Preventive</button>
+            <button type="button" data-mode="reactive" aria-pressed="false">Reactive</button>
+          </div>
+        </div>
+        <div class="ctl">
+          <span class="ctl-label" id="lbl-attack">Who does what</span>
+          <div class="seg" role="group" aria-labelledby="lbl-attack" id="seg-attack">
+            <button type="button" data-attack="ban" aria-pressed="true">Mass ban</button>
+            <button type="button" data-attack="channels" aria-pressed="false">Channel wipe</button>
+            <button type="button" data-attack="trusted" aria-pressed="false">Whitelisted admin</button>
+          </div>
+        </div>
+        <div class="feed-run">
+          <button type="button" class="btn primary small" id="run">Run it again</button>
+        </div>
+      </div>
+      <ol class="feed-log" id="log" role="log" aria-live="off" aria-label="Simulated audit log"></ol>
+      <div class="feed-sum" id="sum" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+</div>
+<div class="view" id="v-antinuke" data-title="Anti-nuke · NxllSec" hidden>
+<main class="page">
+<div class="wrap">
+  <div class="page-head">
+    <div class="tile"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.2 8 8 9 4.8-1 8-4.5 8-9V6z"/></svg></div>
+    <div class="ph-text"><h1>Anti-nuke</h1><p class="sub">twelve guards, each with its own switch</p></div>
+    
+  </div>
+  <div class="split">
+    <div class="scroll guards-copy">
+      <p class="lede">The bot reads the audit log the moment Discord pushes an entry, so it knows who did it before the damage finishes. Everything the attacker did is reverted. Then the punishment lands.</p>
+      <dl class="facts">
+        <div><dt>Preventive</dt><dd>Punish on the first action. <code>,setup</code> turns this on.</dd></div>
+        <div><dt>Reactive</dt><dd>Punish after 3 actions within 15 seconds. Switch with <code>,antinukemode reactive</code>.</dd></div>
+        <div><dt>Instant guards</dt><dd>Channel delete, role delete, bot add and webhook create punish on the first action in both modes.</dd></div>
+        <div><dt>Punishment</dt><dd><code>ban</code>, <code>kick</code>, <code>timeout</code> for one day, or <code>strip</code> to remove every dangerous role. Pick with <code>,punishment</code>.</dd></div>
+        <div><dt>Trusted people</dt><dd>The server owner, extra owners and anyone you whitelist with <code>,wl add</code> are never punished.</dd></div>
+      </dl>
+    </div>
+    <div class="scroll">
+    <ul class="mods" aria-label="Anti-nuke guards">
+      <li><div class="name">antibot <span class="badge">instant</span></div><p class="desc">Remove bots that join the server and punish the user who added them.</p></li>
+      <li><div class="name">antiban</div><p class="desc">Punish users who try to ban members.</p></li>
+      <li><div class="name">antikick</div><p class="desc">Punish users who try to kick members.</p></li>
+      <li><div class="name">antimemberupdate</div><p class="desc">Punish users who give dangerous roles to members.</p></li>
+      <li><div class="name">antiguildupdate</div><p class="desc">Punish users who try to update the server.</p></li>
+      <li><div class="name">antichannelcreate</div><p class="desc">Punish users who try to create a channel.</p></li>
+      <li><div class="name">antichanneldelete <span class="badge">instant</span></div><p class="desc">Punish users who try to delete a channel.</p></li>
+      <li><div class="name">antichannelupdate</div><p class="desc">Punish users who try to update a channel.</p></li>
+      <li><div class="name">antirolecreate</div><p class="desc">Punish users who try to create a role.</p></li>
+      <li><div class="name">antiroledelete <span class="badge">instant</span></div><p class="desc">Punish users who try to delete a role.</p></li>
+      <li><div class="name">antiroleupdate</div><p class="desc">Punish users who try to update a role.</p></li>
+      <li><div class="name">antiwebhook <span class="badge">instant</span></div><p class="desc">Remove webhooks that get created and punish the user.</p></li>
+    </ul>
+    </div>
+  </div>
+</div>
+</main>
+</div>
+<div class="view" id="v-features" data-title="Features · NxllSec" hidden>
+<main class="page">
+<div class="wrap">
+  <div class="page-head">
+    <div class="tile"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+    <div class="ph-text"><h1>Features</h1><p class="sub">the rest of the server, covered</p></div>
+    
+  </div>
+  <div class="scroll">
+    <ul class="cards">
+      <li><h3>Automod</h3><p>Link, mention and blocked-word filters, plus an anti-spam that deletes the spam and times the member out for 10 minutes. Anti-spam is not turned on for you: you switch it on with <code>,antispam on</code>. Blocked messages go to the mod log.</p></li>
+      <li><h3>Moderation</h3><p>Ban, hardban, softban, kick, timeout and jail, with purge, lock, unlock and slowmode. Role hierarchy is checked, so nobody can act on someone above them.</p></li>
+      <li><h3>Logs</h3><p>Separate channels for messages, voice, moderation, members and channel or role changes. Every entry shows a profile block, and channel, role and ban events show who did it. <code>,autosetuplogs</code> creates them all.</p></li>
+      <li><h3>Tickets</h3><p>A panel with Open, Close and Claim buttons. Transcripts go to the log channel and to the ticket owner by direct message when the ticket closes.</p></li>
+      <li><h3>Join to create</h3><p>Members join a creator channel and get their own temporary voice room.</p></li>
+      <li><h3>Verification and welcome</h3><p>Button verification that hands out a role, plus welcome and farewell messages you can edit as embeds.</p></li>
+      <li><h3>Leveling</h3><p>XP from chatting, rank cards, a top 10 leaderboard and role rewards at the levels you choose.</p></li>
+      <li><h3>Message level</h3><p>Counts every message and gives a role at each milestone you pick: 500 messages, 1000 messages, and so on. Milestones have their own announcement channel.</p></li>
+      <li><h3>Copy server</h3><p>Run <code>,copyserver</code> to copy roles, channels and settings into a code, then <code>,pasteserver &lt;code&gt;</code> in another server to add them or to clear and rebuild it.</p></li>
+      <li><h3>Mention the bot</h3><p>Mention it on its own and it replies with its features, its owner and how many servers and users it protects. Every command also replies to the message that ran it.</p></li>
+    </ul>
+  </div>
+</div>
+</main>
+</div>
+<div class="view" id="v-commands" data-title="Commands · NxllSec" hidden>
+<main class="page">
+<div class="wrap">
+  <div class="page-head">
+    <div class="tile"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 7 5 5-5 5M12 18h8"/></svg></div>
+    <div class="ph-text"><h1>Commands</h1><p class="sub">every command, searchable</p></div>
+    <div class="cmd-tools">
+      <div class="field search"><label for="q">Find</label><input id="q" type="search" placeholder="ban, ticket, antilink" autocomplete="off" spellcheck="false"></div>
+      <div class="field prefix"><label for="prefix">Prefix</label><input id="prefix" type="text" value="," maxlength="3" autocomplete="off" spellcheck="false" aria-label="Command prefix"></div>
+    </div>
+  </div>
+  <div class="browser">
+    <div class="cats" id="cats" role="group" aria-label="Categories"></div>
+    <div class="listcol">
+      <p class="count" id="count" aria-live="polite"></p>
+      <div class="list" id="list"></div>
+      <noscript><p class="empty">Turn on JavaScript to browse the command list, or run <code>,help</code> in Discord.</p></noscript>
+    </div>
+  </div>
+</div>
+</main>
+</div>
+<div class="view" id="v-setup" data-title="Setup · NxllSec" hidden>
+<main class="page">
+<div class="wrap">
+  <div class="page-head">
+    <div class="tile"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg></div>
+    <div class="ph-text"><h1>Setup</h1><p class="sub">six steps, in this order</p></div>
+    
+  </div>
+  <div class="scroll">
+    <ol class="stepgrid">
+      <li><span class="num">1</span><h3>Invite the bot</h3><p>It asks for Administrator so it can revert changes and ban on its own. Use the <a href="https://discord.com/oauth2/authorize?client_id=1558056855236907048&permissions=8&scope=bot+applications.commands" data-invite target="_blank" rel="noopener">invite link</a>, which includes slash commands.</p></li>
+      <li><span class="num">2</span><h3>Move its role to the top</h3><p>Open Server Settings, then Roles, and drag the bot's role above everyone else. It cannot act on anyone above it, and Discord rejects a ban from a lower role.</p></li>
+      <li><span class="num">3</span><h3>Run <code>,setup</code></h3><p>Turns on anti-nuke (ban on the first action) and automod, and creates the log channels. Anti-spam stays off until you run <code>,antispam on</code>.</p></li>
+      <li><span class="num">4</span><h3>Whitelist your staff</h3><p>Run <code>,wl add @staff</code>. Anyone not whitelisted who deletes channels, bans members or similar gets punished.</p></li>
+      <li><span class="num">5</span><h3>Add tickets and voice rooms</h3><p>Run <code>,ticket setup</code> for the ticket panel and <code>,j2c setup</code> for join-to-create voice rooms. <code>,setup</code> does not do these two.</p></li>
+      <li><span class="num">6</span><h3>Look around</h3><p>Run <code>,help</code> to browse every command. Use <code>,help ban</code> for the usage and aliases of a single one, or mention the bot to see what it can do.</p></li>
+    </ol>
+    <div class="hero-cta setup-cta">
+      <a class="btn primary" data-invite href="https://discord.com/oauth2/authorize?client_id=1558056855236907048&permissions=8&scope=bot+applications.commands" target="_blank" rel="noopener">Add to Discord</a>
+      <a class="btn" href="#commands">Browse commands</a>
+    </div>
+  </div>
+</div>
+</main>
+</div>
+<div class="view" id="v-status" data-title="Status · NxllSec" hidden>
+<main class="page">
+<div class="wrap">
+  <div class="page-head">
+    <div class="tile"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div>
+    <div class="ph-text"><h1>Status</h1><p class="sub">Monitoring <b id="ago">…</b> — live service health</p></div>
+    
+  </div>
+  <div class="scroll">
+    <section class="sys" id="sys" data-state="unk" aria-live="polite">
+      <p class="sys-title"><i class="dot"></i><span id="sys-text">Checking…</span></p>
+      <div class="stats">
+        <div class="stat"><span class="k">Servers</span><span class="v v-accent" id="st-servers">—</span></div>
+        <div class="stat"><span class="k">Users</span><span class="v" id="st-users">—</span></div>
+        <div class="stat"><span class="k">Ping</span><span class="v v-ok" id="st-ping">—</span></div>
+        <div class="stat"><span class="k">Uptime</span><span class="v v-ok" id="st-uptime">—</span></div>
+      </div>
+      <p class="sys-note" id="sys-note" hidden></p>
+    </section>
+    <p class="label">Services</p>
+    <ul class="svcs" id="svcs">
+      <li class="svc" data-svc="gateway" data-state="unk">
+        <span class="svc-ic"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></span>
+        <div class="svc-t"><b>Discord Gateway</b><span>Websocket connection</span></div>
+        <span class="pill"><i class="dot"></i><span>Unknown</span></span>
+      </li>
+      <li class="svc" data-svc="commands" data-state="unk">
+        <span class="svc-ic"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 7 5 5-5 5M12 18h8"/></svg></span>
+        <div class="svc-t"><b>Command Handler</b><span>Slash & prefix commands</span></div>
+        <span class="pill"><i class="dot"></i><span>Unknown</span></span>
+      </li>
+      <li class="svc" data-svc="antinuke" data-state="unk">
+        <span class="svc-ic"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.2 8 8 9 4.8-1 8-4.5 8-9V6z"/></svg></span>
+        <div class="svc-t"><b>Anti-nuke Guards</b><span>Audit log listener & punishments</span></div>
+        <span class="pill"><i class="dot"></i><span>Unknown</span></span>
+      </li>
+      <li class="svc" data-svc="database" data-state="unk">
+        <span class="svc-ic"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span>
+        <div class="svc-t"><b>Database</b><span>Data storage & retrieval</span></div>
+        <span class="pill"><i class="dot"></i><span>Unknown</span></span>
+      </li>
+      <li class="svc" data-svc="website" data-state="ok">
+        <span class="svc-ic"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></span>
+        <div class="svc-t"><b>Website</b><span>This site</span></div>
+        <span class="pill"><i class="dot"></i><span>Operational</span></span>
+      </li>
+    </ul>
+  </div>
+</div>
+</main>
+</div>
+</div>
+
+<footer class="foot"><span>@shukwrld</span><span>|</span><span>&copy; 2026 NxllSecurity - All rights reserved.</span></footer>
+
+<script src="script.js"></script>
+</body>
+</html>
